@@ -12,7 +12,7 @@ Simple currency converter. I used react, redux and fixer.io
 
 * react
 * redux
-* fixer.io
+* currencylayer api
 
 
 ## Contribution guide

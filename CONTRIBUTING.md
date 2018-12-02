@@ -13,7 +13,7 @@
 1) Install [NodeJS](https://nodejs.org/uk/)
 2) Create `.env` file with your configs
 ```sh
-REACT_APP_API_KEY=<Your fixer api key>
+REACT_APP_API_KEY=<Your currencylayer api key>
 ```
 3) Install all packages
 ```sh
