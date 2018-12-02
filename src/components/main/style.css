@@ -30,6 +30,10 @@ input[type=number]:not(.browser-default):focus:not([readonly]),
   cursor: pointer;
 }
 
+.select-wrapper span.caret {
+  color: #fff;
+}
+
 .inverse:active,
 .inverse:focus {
   background: transparent

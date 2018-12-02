@@ -1,8 +1,8 @@
 import React from 'react';
 
 const inverseSvg = <svg
-width="50px"
-height="47px"
+width="30px"
+height="30px"
 viewBox="0 0 50 47"
 version="1.1"
 xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import "./style.css";
 import { Input, Row, Button } from "react-materialize";
+
 import inverseSvg from './inverse';
+import spinner from './spinner';
 
 class Main extends Component {
   constructor(props) {
@@ -11,40 +13,42 @@ class Main extends Component {
       from: 'UAH',
       to: 'USD',
       amount: 1,
-      result: ''
+      result: '',
+      isLoaded: false
     }
-
-    this.changeFrom = this.changeFrom.bind(this);
-    this.changeTo = this.changeTo.bind(this);
-    this.inverse = this.inverse.bind(this);
-    this.changeAmount = this.changeAmount.bind(this);
   }
+
   getData() {
-    // fetch(
-    //   `http://www.apilayer.net/api/live?access_key=${process.env.REACT_APP_API_KEY}&currencies=${this.state.currencies}&source=${this.state.from}`
-    // )
-    //   .then(res => res.json())
-    //   .then(data => console.log(data));
-    const {from, to, amount} = this.state;
-    fetch(`https://apilayer.net/api/convert?access_key=${process.env.REACT_APP_API_KEY}&from=${from}&to=${to}&amount=${amount}`)
+    const { from, to, amount } = this.state;
+
+    this.setState({
+      isLoaded: false,
+      result: <span className='center'> {spinner} </span>
+    })
+
+    fetch(`http://apilayer.net/api/convert?access_key=${process.env.REACT_APP_API_KEY}&from=${from}&to=${to}&amount=${amount}`)
       .then(res => res.json())
       .then(data => {
         console.log(data);
         this.setState({
-          result: data.result
+          result: data.result,
+          isLoaded: false
         })
       });
   }
+
   changeFrom(e) {
     this.setState({
       from: e.target.value
     })
   }
+
   changeTo(e) {
     this.setState({
       to: e.target.value
     })
   }
+
   inverse() {
     const from = this.state.from;
     const to = this.state.to;
@@ -53,49 +57,62 @@ class Main extends Component {
       to: from
     })
   }
+
   changeAmount(e) {
     this.setState({
       amount: e.target.value
     })
   }
+
   render() {
     const currencies = this.state.currencies.map(el => {
       return <option key={el} value={el}>{el}</option>
-    })
+    });
+
+    const data = this.state.result ?  <h4 className='white-text center'> Result: { this.state.result }</h4> : '';
+
     return (
       <div className="main">
         <Row>
           <Input
             type="number"
             className="white-text"
-            s={4}
+            s={12}
+            m={4}
             label="Amount"
             min='0'
             defaultValue={this.state.amount}
-            onChange={this.changeAmount}
+            onChange={ e => this.changeAmount(e) }
             />
 
           <Input
-            s={3}
+            s={5}
+            m={3}
             type="select"
             label="From"
             value={ this.state.from }
-            onChange={this.changeFrom}
+            onChange={ e => this.changeFrom(e) }
             className="white-text"
           >
             { currencies }
           </Input>
 
-          <button onClick={ this.inverse } className="inverse col s2" s={2} type="button">
+          <button
+            onClick={ e => this.inverse(e) }
+            className="inverse col s2"
+            s={2}
+            type="button"
+          >
             { inverseSvg }
           </button>
 
           <Input
-            s={3}
+            s={5}
+            m={3}
             type="select"
             label="To"
             value={ this.state.to }
-            onChange={this.changeTo}
+            onChange={ e=> this.changeTo(e) }
             className="white-text"
           >
             { currencies }
@@ -103,17 +120,15 @@ class Main extends Component {
         </Row>
         <Row className="valign-wrapper">
           <Button
-            className="red convert-btn centered"
+            className="red convert-btn centered col s12 m5"
             waves="light"
-            onClick={() => this.getData()}
+            onClick={ () => this.getData() }
           >
             Convert
           </Button>
         </Row>
         <Row>
-          { this.state.result ? <h4 className='white-text center'> Result: { this.state.result }</h4>
-          : ''}
-
+          { data }
         </Row>
       </div>
     );
