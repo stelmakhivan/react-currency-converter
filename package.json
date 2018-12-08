@@ -2,7 +2,10 @@
   "name": "react-currency-converter",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.11.0"
+  },
   "author": "Ivan Stelmakh",
   "license": "MIT",
   "dependencies": {

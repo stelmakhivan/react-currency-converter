@@ -29,7 +29,7 @@ class Main extends Component {
       result: <span className='center'> { spinner } </span>
     })
 
-    fetch(`http://apilayer.net/api/convert?access_key=${process.env.REACT_APP_API_KEY}&from=${from}&to=${to}&amount=${amount}`)
+    fetch(`https://apilayer.net/api/convert?access_key=${process.env.REACT_APP_API_KEY}&from=${from}&to=${to}&amount=${amount}`)
     .then(res => res.json())
     .then(data => {
       console.log(data);
