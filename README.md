@@ -18,6 +18,8 @@ Simple currency converter. I used react, redux and fixer.io
 ## Contribution guide
 [Contribution](https://github.com/stelmakhivan/react-currency-converter/blob/master/CONTRIBUTING.md)
 
+## My App [Heroku](https://front-camp-currency-converter.herokuapp.com/)
+
 License
 ----
 
