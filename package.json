@@ -6,7 +6,7 @@
     "npm": "6.4.1",
     "node": "10.11.0"
   },
-  "homepage": ".",
+  "homepage": "https://front-camp-currency-converter.herokuapp.com",
   "author": "Ivan Stelmakh",
   "license": "MIT",
   "dependencies": {
