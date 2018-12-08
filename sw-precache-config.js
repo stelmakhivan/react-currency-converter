@@ -4,7 +4,7 @@ module.exports = {
     'build/*.html',
     'build/manifest.json',
     'build/favicon.ico',
-    './favicon.ico',
+    'favicon.ico',
     'build/static/**/!(*map*)'
   ],
   dontCacheBustUrlsMatching: /\.\w{8}\./,
