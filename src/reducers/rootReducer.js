@@ -15,31 +15,32 @@ export const initialState = {
 }
 
 export function rootReducer(state = initialState, action) {
-  let result, from, to = ''
   switch (action.type) {
-    case CHANGE_AMOUNT:
+
+    case CHANGE_AMOUNT: {
       const amount = Number(action.payload.amount)
-      result = action.payload.result
+      const result = action.payload.result
       return { ...state, amount, result}
+    }
 
-    case CHANGE_FROM_CURRENCY:
-      from = action.payload.from
-      result = action.payload.result
+    case CHANGE_FROM_CURRENCY: {
+      const { from, result } = action.payload
       return { ...state, from, result }
+    }
 
-    case CHANGE_TO_CURRENCY:
-      to = action.payload.to
-      result = action.payload.result
+    case CHANGE_TO_CURRENCY: {
+      const { to, result } = action.payload
       return { ...state, to, result }
+    }
 
-    case INVERSE_CURRENCY:
-      from = action.payload.from
-      to = action.payload.to
-      result = action.payload.result
-      return { ...state, from, to, result}
+    case INVERSE_CURRENCY: {
+      const { from, to, result } = action.payload
+      return { ...state, from, to, result};
+    }
 
-    case FETCH_DATA:
-      return { ...state, result: action.payload }
+    case FETCH_DATA: {
+      return { ...state, result: action.payload };
+    }
 
     default:
       return state
