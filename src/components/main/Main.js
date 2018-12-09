@@ -12,7 +12,7 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currencies: ['USD', 'EUR', 'UAH', 'PLN'],
+      currencies: ['USD', 'EUR', 'UAH', 'PLN', 'RUB', 'GBP', 'CAD'],
       from: 'USD',
       to: 'EUR',
       amount: 1,
@@ -35,12 +35,20 @@ class Main extends Component {
       console.log(data);
       this.setState({ result: data.result, isLoaded: false });
     });
+    // fetch(`https://www.amdoren.com/api/currency.php?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}&from=${from}&to=${to}&amount=${amount}`)
+    // .then(res => res.json())
+    // .then(data => {
+    //   console.log(data);
+    //   this.setState({ result: data.amount, isLoaded: false });
+    // });
+
   }
 
   changeInput(e) {
     const { name, value } = e.target
     this.setState({
-      [name]: value
+      [name]: value,
+      result: ''
     })
   }
 
@@ -48,23 +56,28 @@ class Main extends Component {
     const { from, to } = this.state;
     this.setState({
       from: to,
-      to: from
+      to: from,
+      result: ''
     })
   }
 
   changeAmount(e) {
     this.setState({
-      amount: e.target.value
+      amount: e.target.value,
+      result: ''
     })
   }
 
   render() {
-    const currencies = this.state.currencies.map(el => {
+    // console.log(this.props.store);
+    const currencies = this.props.store.currencies.map(el => {
       return <option key={el} value={el}>{el}</option>
     });
 
     const data = this.state.result
-      ?  <h4 className='white-text center'> Result: { this.state.result }</h4>
+      ? <h4 className='white-text center'>
+        {this.state.amount} {this.state.from} = { this.state.result } {this.state.to}
+        </h4>
       : '';
 
     return (
