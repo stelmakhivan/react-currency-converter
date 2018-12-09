@@ -6,7 +6,7 @@ import Header from './header/Header';
 import Main from './main/Main';
 import Footer from './footer/Footer';
 
-class App extends Component {
+export class App extends Component {
   render() {
     return (
       <div className='app'>
