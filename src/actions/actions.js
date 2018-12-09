@@ -2,6 +2,7 @@ import {
   CHANGE_AMOUNT,
   CHANGE_FROM_CURRENCY,
   CHANGE_TO_CURRENCY,
+  INVERSE_CURRENCY,
   FETCH_DATA } from '../constants/ActionTypes';
 
 export function changeAmount(amount) {
@@ -22,6 +23,13 @@ export function changeToCurrency(to) {
   return {
     type: CHANGE_TO_CURRENCY,
     payload: to
+  }
+}
+
+export function inverseCurrency(currency) {
+  return {
+    type: INVERSE_CURRENCY,
+    payload: currency
   }
 }
 

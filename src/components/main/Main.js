@@ -12,17 +12,17 @@ class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currencies: ['USD', 'EUR', 'UAH', 'PLN', 'RUB', 'GBP', 'CAD'],
-      from: 'USD',
-      to: 'EUR',
-      amount: 1,
+      // currencies: ['USD', 'EUR', 'UAH', 'PLN', 'RUB', 'GBP', 'CAD'],
+      // from: 'USD',
+      // to: 'EUR',
+      // amount: 1,
       result: '',
       isLoaded: false
     }
   }
 
   getData() {
-    const { from, to, amount } = this.state;
+    const { from, to, amount } = this.props.store;
 
     this.setState({
       isLoaded: false,
@@ -45,16 +45,23 @@ class Main extends Component {
   }
 
   changeInput(e) {
-    const { name, value } = e.target
-    this.setState({
-      [name]: value,
-      result: ''
-    })
+    const { name, value } = e.target;
+    if (name==='from') {
+      this.props.changeFromCurrency({
+        from: value,
+        result: ''
+      })
+    } else if (name==='to') {
+      this.props.changeToCurrency({
+        to: value,
+        result: ''
+      })
+    }
   }
 
   inverse() {
-    const { from, to } = this.state;
-    this.setState({
+    const { from, to } = this.props.store;
+    this.props.inverseCurrency({
       from: to,
       to: from,
       result: ''
@@ -62,21 +69,22 @@ class Main extends Component {
   }
 
   changeAmount(e) {
-    this.setState({
+    this.props.changeAmount({
       amount: e.target.value,
       result: ''
     })
   }
 
   render() {
-    // console.log(this.props.store);
-    const currencies = this.props.store.currencies.map(el => {
+    const store = this.props.store;
+    console.log(store);
+    const currencies = store.currencies.map(el => {
       return <option key={el} value={el}>{el}</option>
     });
 
     const data = this.state.result
       ? <h4 className='white-text center'>
-        {this.state.amount} {this.state.from} = { this.state.result } {this.state.to}
+        {store.amount} {store.from} = { this.state.result } {store.to}
         </h4>
       : '';
 
@@ -84,13 +92,13 @@ class Main extends Component {
       <div className='main'>
         <Row>
           <AmountInput
-            data = { this.state }
+            data = { store }
             onChange = { e => this.changeAmount(e) }
           />
 
           <FromInput
             currencies = { currencies }
-            from = { this.state.from }
+            from = { store.from }
             onChange = { e => this.changeInput(e) }
           />
 
@@ -105,7 +113,7 @@ class Main extends Component {
 
           <ToInput
             currencies = { currencies }
-            to = { this.state.to }
+            to = { store.to }
             onChange = { e => this.changeInput(e) }
           />
         </Row>
