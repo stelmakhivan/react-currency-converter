@@ -15,12 +15,12 @@ class Main extends Component {
 
   changeInput(e) {
     const { name, value } = e.target;
-    if (name==='from') {
+    if (name === 'from') {
       this.props.changeFromCurrency({
         from: value,
         result: ''
       })
-    } else if (name==='to') {
+    } else if (name === 'to') {
       this.props.changeToCurrency({
         to: value,
         result: ''
@@ -46,11 +46,9 @@ class Main extends Component {
 
   render() {
     const store = this.props.store;
-    console.log(store);
     const currencies = store.currencies.map(el => {
       return <option key={el} value={el}>{el}</option>
     });
-
     const result = store.result
       ? <h4 className='white-text center'>
           {store.amount} {store.from} = { store.result } {store.to}

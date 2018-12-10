@@ -5,6 +5,7 @@ import {
   INVERSE_CURRENCY,
   FETCH_DATA } from '../constants/ActionTypes';
 import store from '../store/store';
+import spinner from '../components/main/assets/img/spinner';
 
 export function changeAmount(amount) {
   return {
@@ -36,8 +37,15 @@ export function inverseCurrency(currency) {
 
 export const fetchData = () => dispatch => {
   const { from, to, amount } = store.getState();
-
-  fetch(`https://www.amdoren.com/api/currency.php?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}&from=${from}&to=${to}&amount=${amount}`)
+  dispatch({
+    type: FETCH_DATA,
+    payload: spinner
+  })
+  fetch(`https://www.amdoren.com/api/currency.php
+?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}
+&from=${from}
+&to=${to}
+&amount=${amount}`)
   .then(res => res.json())
   .then(data => dispatch({
     type: FETCH_DATA,
