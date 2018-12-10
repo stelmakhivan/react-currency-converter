@@ -3,7 +3,8 @@ import {
   CHANGE_FROM_CURRENCY,
   CHANGE_TO_CURRENCY,
   INVERSE_CURRENCY,
-  FETCH_DATA } from '../constants/ActionTypes';
+  FETCH_DATA,
+  FETCH_START } from '../constants/ActionTypes';
 
 export const initialState = {
   currencies: ['USD', 'EUR', 'UAH', 'PLN', 'RUB', 'GBP', 'CAD'],
@@ -36,6 +37,10 @@ export function rootReducer(state = initialState, action) {
     case INVERSE_CURRENCY: {
       const { from, to, result } = action.payload
       return { ...state, from, to, result};
+    }
+
+    case FETCH_START: {
+      return { ...state, result: action.payload };
     }
 
     case FETCH_DATA: {
