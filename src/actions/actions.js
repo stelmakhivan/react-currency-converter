@@ -48,12 +48,14 @@ export const fetchData = () => dispatch => {
   dispatch({
     type: FETCH_START,
     payload: spinner
-  })
-  return fetch(`https://www.amdoren.com/api/currency.php
+  });
+  const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+  const targetUrl = `https://www.amdoren.com/api/currency.php
 ?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}
 &from=${from}
 &to=${to}
-&amount=${amount}`)
+&amount=${amount}`;
+  fetch(proxyUrl + targetUrl)
   .then(res => res.json())
   .then(data => dispatch({
     type: FETCH_DATA,
