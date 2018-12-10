@@ -4,6 +4,7 @@ import {
   CHANGE_TO_CURRENCY,
   INVERSE_CURRENCY,
   FETCH_DATA } from '../constants/ActionTypes';
+import store from '../store/store';
 
 export function changeAmount(amount) {
   return {
@@ -33,31 +34,13 @@ export function inverseCurrency(currency) {
   }
 }
 
-// export function fetchProducts() {
-//   return dispatch => {
-//     dispatch(fetchProductsBegin());
-//     return fetch("/products")
-//       .then(handleErrors)
-//       .then(res => res.json())
-//       .then(json => {
-//         dispatch(fetchProductsSuccess(json.products));
-//         return json.products;
-//       })
-//       .catch(error => dispatch(fetchProductsFailure(error)));
-//   };
-// }
+export const fetchData = () => dispatch => {
+  const { from, to, amount } = store.getState();
 
-// // Handle HTTP errors since fetch won't.
-// function handleErrors(response) {
-//   if (!response.ok) {
-//     throw Error(response.statusText);
-//   }
-//   return response;
-// }
-
-export function fetchData(data) {
-  return {
+  fetch(`https://www.amdoren.com/api/currency.php?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}&from=${from}&to=${to}&amount=${amount}`)
+  .then(res => res.json())
+  .then(data => dispatch({
     type: FETCH_DATA,
-    payload: data
-  }
+    payload: data.amount
+  }));
 }

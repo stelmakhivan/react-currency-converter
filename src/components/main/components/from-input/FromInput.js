@@ -13,7 +13,7 @@ const FromInput = props => {
       onChange={ props.onChange }
       className='white-text'
     >
-      {props.currencies}
+      { props.currencies }
     </Input>
   );
 };

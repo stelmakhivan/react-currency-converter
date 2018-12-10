@@ -15,6 +15,10 @@ input[type=number]:not(.browser-default):focus:not([readonly]),
   color: #fff !important;
 }
 
+.select-dropdown {
+  overflow-y: auto !important;
+}
+
 .convert-btn {
   width: 25%;
   margin: auto

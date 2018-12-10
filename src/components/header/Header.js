@@ -4,7 +4,7 @@ import './assets/styles/style.css';
 const Header = () => {
   return (
     <div>
-      <h3 className='title'>React Currency Converter</h3>
+      <h3 className='title'>Currency Converter</h3>
     </div>
   )
 }

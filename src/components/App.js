@@ -10,7 +10,8 @@ import {
   changeAmount,
   changeFromCurrency,
   changeToCurrency,
-  inverseCurrency
+  inverseCurrency,
+  fetchData
 } from '../actions/actions';
 
 export class App extends Component {
@@ -20,7 +21,8 @@ export class App extends Component {
       changeAmountAction,
       changeFromCurrencyAction,
       changeToCurrencyAction,
-      inverseCurrencyAction
+      inverseCurrencyAction,
+      fetchDataAction
     } = this.props
     return (
       <div className='app'>
@@ -31,6 +33,7 @@ export class App extends Component {
           changeFromCurrency={ changeFromCurrencyAction }
           changeToCurrency={ changeToCurrencyAction }
           inverseCurrency={ inverseCurrencyAction }
+          fetchData= { fetchDataAction }
         />
         <Footer />
       </div>
@@ -48,7 +51,8 @@ const mapDispatchToProps = dispatch => ({
   changeAmountAction: amount => dispatch(changeAmount(amount)),
   changeFromCurrencyAction: from => dispatch(changeFromCurrency(from)),
   changeToCurrencyAction: to => dispatch(changeToCurrency(to)),
-  inverseCurrencyAction: currency => dispatch(inverseCurrency(currency))
+  inverseCurrencyAction: currency => dispatch(inverseCurrency(currency)),
+  fetchDataAction: data => dispatch(fetchData(data))
 })
 
 export default connect(
