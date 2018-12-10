@@ -53,7 +53,7 @@ export const fetchData = () => dispatch => {
 ?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}
 &from=${from}
 &to=${to}
-&amount=${amount}`, {mode: 'no-cors'})
+&amount=${amount}`)
   .then(res => res.json())
   .then(data => dispatch({
     type: FETCH_DATA,

@@ -5,6 +5,7 @@
   "author": "Ivan Stelmakh",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-favicon": "^2.0.1",
     "react": "^16.6.3",
