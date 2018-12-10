@@ -3,7 +3,6 @@ import './assets/styles/style.css';
 import { Row, Button } from 'react-materialize';
 
 import inverseSvg from './assets/img/inverse';
-// import spinner from './assets/img/spinner';
 import AmountInput from './components/amount-input/AmountInput';
 import FromInput from './components/from-input/FromInput';
 import ToInput from './components/to-input/ToInput';
