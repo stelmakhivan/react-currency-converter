@@ -41,7 +41,7 @@ export const fetchData = () => dispatch => {
     type: FETCH_DATA,
     payload: spinner
   })
-  fetch(`https://www.amdoren.com/api/currency.php
+  return fetch(`https://www.amdoren.com/api/currency.php
 ?api_key=${process.env.REACT_APP_API_KEY_AMDOREN}
 &from=${from}
 &to=${to}
