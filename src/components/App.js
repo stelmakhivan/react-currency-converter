@@ -13,27 +13,28 @@ import {
   inverseCurrency,
   fetchData
 } from '../actions/actions';
+import { bindActionCreators } from 'redux';
 
 export class App extends Component {
   render() {
     const {
       store,
-      changeAmountAction,
-      changeFromCurrencyAction,
-      changeToCurrencyAction,
-      inverseCurrencyAction,
-      fetchDataAction
+      changeAmount,
+      changeFromCurrency,
+      changeToCurrency,
+      inverseCurrency,
+      fetchData
     } = this.props
     return (
       <div className='app'>
         <Header />
         <Main
           store={ store }
-          changeAmount={ changeAmountAction }
-          changeFromCurrency={ changeFromCurrencyAction }
-          changeToCurrency={ changeToCurrencyAction }
-          inverseCurrency={ inverseCurrencyAction }
-          fetchData= { fetchDataAction }
+          changeAmount={ changeAmount }
+          changeFromCurrency={ changeFromCurrency }
+          changeToCurrency={ changeToCurrency }
+          inverseCurrency={ inverseCurrency }
+          fetchData= { fetchData }
         />
         <Footer />
       </div>
@@ -41,19 +42,22 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = store => {
-  return {
-    store
-  }
-}
+const mapStateToProps = store => ({ store });
 
-const mapDispatchToProps = dispatch => ({
-  changeAmountAction: amount => dispatch(changeAmount(amount)),
-  changeFromCurrencyAction: from => dispatch(changeFromCurrency(from)),
-  changeToCurrencyAction: to => dispatch(changeToCurrency(to)),
-  inverseCurrencyAction: currency => dispatch(inverseCurrency(currency)),
-  fetchDataAction: data => dispatch(fetchData(data))
-})
+// const mapDispatchToProps = dispatch => ({
+//   changeAmountAction: amount => dispatch(changeAmount(amount)),
+//   changeFromCurrencyAction: from => dispatch(changeFromCurrency(from)),
+//   changeToCurrencyAction: to => dispatch(changeToCurrency(to)),
+//   inverseCurrencyAction: currency => dispatch(inverseCurrency(currency)),
+//   fetchDataAction: data => dispatch(fetchData(data))
+// })
+const mapDispatchToProps = dispatch => bindActionCreators({
+  changeAmount,
+  changeFromCurrency,
+  changeToCurrency,
+  inverseCurrency,
+  fetchData
+}, dispatch)
 
 export default connect(
   mapStateToProps,
